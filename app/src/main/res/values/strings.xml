@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">NewsAPI</string>
+
+    <string name="article_text">
+        <![CDATA[<b><font color="#000000">Article:</font></b> %s]]>
+    </string>
+
+    <string name="description_text">
+        <![CDATA[<b><font color="#000000">Description:</font></b> %s]]>
+    </string>
+
+    <string name="content_text">
+        <![CDATA[<b><font color="#000000">Content:</font></b> %s>]]>
+    </string>
+
+    <string name="refresh">Refresh</string>
+    <string name="error_on_connection">Error on connection</string>
+
 </resources>
