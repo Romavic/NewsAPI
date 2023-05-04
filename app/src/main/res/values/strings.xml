@@ -16,4 +16,9 @@
     <string name="refresh">Refresh</string>
     <string name="error_on_connection">Error on connection</string>
 
+    <string name="title_biometric">Biometric login for my app</string>
+    <string name="subtitle_biometric">Log in using your biometric credential</string>
+    <string name="description_biometric">…</string>
+    <string name="cancel_button">Cancel</string>
+
 </resources>

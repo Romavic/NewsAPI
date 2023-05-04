@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import ao.newsapi.romavicdosanjos.R
 import ao.newsapi.romavicdosanjos.data.authentication.BiometricManagerImpl
 import ao.newsapi.romavicdosanjos.data.authentication.IBiometricManager
 import ao.newsapi.romavicdosanjos.data.utilities.ResultData
@@ -30,7 +31,12 @@ class NewsTopHeadlinesActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
         iBiometricManager = BiometricManagerImpl(this)
 
-        iBiometricManager.initializedBiometric {
+        iBiometricManager.initializedBiometric(
+            getString(R.string.title_biometric),
+            getString(R.string.subtitle_biometric),
+            getString(R.string.description_biometric),
+            getString(R.string.cancel_button)
+        ) {
             configureAdapter()
             newsTopHeadlinesRequest()
         }
