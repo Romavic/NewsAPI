@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -22,10 +23,12 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField "String", "API_KEY", API_KEY
+            buildConfigField "String", "BASE_URL", BASE_URL
             multiDexEnabled true
         }
         debug {
-            buildConfigField "String", "API_KEY",  API_KEY
+            buildConfigField "String", "API_KEY", API_KEY
+            buildConfigField "String", "BASE_URL", BASE_URL
             multiDexEnabled true
         }
     }
@@ -40,6 +43,15 @@ android {
         viewBinding true
         buildConfig = true
     }
+    /*   flavorDimensions 'romavicdosanjos'
+       productFlavors {
+           newsapi {
+               dimension 'romavicdosanjos'
+               applicationId 'newsapi'
+               targetSdk 33
+               minSdk 21
+           }
+       }*/
 }
 
 dependencies {
@@ -49,13 +61,24 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
-    implementation 'com.google.android.material:material:1.8.0'
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.6.0'
-    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+    implementation 'androidx.biometric:biometric-ktx:1.2.0-alpha05'
     implementation 'io.coil-kt:coil:2.3.0'
+    implementation "io.insert-koin:koin-core:3.4.0"
+    implementation "io.insert-koin:koin-android:3.4.0"
+    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.11'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
+    testImplementation 'com.squareup.okhttp3:mockwebserver:5.0.0-alpha.11'
+    testImplementation 'app.cash.turbine:turbine:0.12.3'
+    testImplementation 'org.jetbrains.kotlin:kotlin-test:1.8.21'
+    testImplementation 'io.mockk:mockk:1.13.5'
     testImplementation 'junit:junit:4.13.2'
+    testImplementation 'androidx.arch.core:core-testing:2.2.0'
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
