@@ -1,4 +1,4 @@
-package ao.newsapi.romavicdosanjos.data.authentication
+package ao.newsapi.romavicdosanjos.utils.authentication
 
 interface IBiometricManager {
     fun initializedBiometric(

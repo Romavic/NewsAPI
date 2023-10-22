@@ -1,4 +1,4 @@
-package ao.newsapi.romavicdosanjos.data.authentication
+package ao.newsapi.romavicdosanjos.utils.authentication
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity

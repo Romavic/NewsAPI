@@ -1,17 +1,17 @@
-package ao.newsapi.romavicdosanjos.data.mappers
+package ao.newsapi.romavicdosanjos.domain.mappers
 
 import ao.newsapi.romavicdosanjos.data.dto.response.ArticleResponse
 import ao.newsapi.romavicdosanjos.data.dto.response.NewsTopHeadlinesResponse
 import ao.newsapi.romavicdosanjos.data.dto.response.SourceResponse
 import ao.newsapi.romavicdosanjos.data.utilities.Mapper
-import ao.newsapi.romavicdosanjos.domain.model.ArticleModel
-import ao.newsapi.romavicdosanjos.domain.model.NewsTopHeadlinesModel
-import ao.newsapi.romavicdosanjos.domain.model.SourceModel
+import ao.newsapi.romavicdosanjos.domain.entity.ArticleEntity
+import ao.newsapi.romavicdosanjos.domain.entity.NewsTopHeadlinesEntity
+import ao.newsapi.romavicdosanjos.domain.entity.SourceEntity
 
-object NewsTopHeadlinesMapper : Mapper<NewsTopHeadlinesResponse, NewsTopHeadlinesModel> {
-    override fun map(data: NewsTopHeadlinesResponse): NewsTopHeadlinesModel {
+object NewsTopHeadlinesMapper : Mapper<NewsTopHeadlinesResponse, NewsTopHeadlinesEntity> {
+    override fun map(data: NewsTopHeadlinesResponse): NewsTopHeadlinesEntity {
         val articleModels = data.articleResponses?.map(ArticleMapper::map)
-        return NewsTopHeadlinesModel(
+        return NewsTopHeadlinesEntity(
             status = data.status,
             totalResults = data.totalResults,
             articleResponses = articleModels?.toMutableList()
@@ -19,9 +19,9 @@ object NewsTopHeadlinesMapper : Mapper<NewsTopHeadlinesResponse, NewsTopHeadline
     }
 }
 
-object ArticleMapper : Mapper<ArticleResponse, ArticleModel> {
-    override fun map(data: ArticleResponse): ArticleModel {
-        return ArticleModel(
+object ArticleMapper : Mapper<ArticleResponse, ArticleEntity> {
+    override fun map(data: ArticleResponse): ArticleEntity {
+        return ArticleEntity(
             sourceResponse = data.sourceResponse?.let { SourceMapper.map(it) },
             author = data.author,
             title = data.title,
@@ -34,9 +34,9 @@ object ArticleMapper : Mapper<ArticleResponse, ArticleModel> {
     }
 }
 
-object SourceMapper : Mapper<SourceResponse, SourceModel> {
-    override fun map(data: SourceResponse): SourceModel {
-        return SourceModel(
+object SourceMapper : Mapper<SourceResponse, SourceEntity> {
+    override fun map(data: SourceResponse): SourceEntity {
+        return SourceEntity(
             id = data.id,
             name = data.name
         )

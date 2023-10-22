@@ -1,6 +1,6 @@
 package ao.newsapi.romavicdosanjos.data.repository
 
-import ao.newsapi.romavicdosanjos.data.mappers.NewsTopHeadlinesMapper
+import ao.newsapi.romavicdosanjos.domain.mappers.NewsTopHeadlinesMapper
 import ao.newsapi.romavicdosanjos.data.remotedatasource.NewsTopHeadlinesRemoteDataSource
 import ao.newsapi.romavicdosanjos.domain.repository.NewsTopHeadlinesRepository
 import ao.newsapi.romavicdosanjos.stub.newsTopHeadlinesResponseStub

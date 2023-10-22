@@ -1,9 +1,12 @@
 package ao.newsapi.romavicdosanjos.di
 
+import androidx.appcompat.app.AppCompatActivity
 import ao.newsapi.romavicdosanjos.BuildConfig
-import ao.newsapi.romavicdosanjos.data.mappers.ArticleMapper
-import ao.newsapi.romavicdosanjos.data.mappers.NewsTopHeadlinesMapper
-import ao.newsapi.romavicdosanjos.data.mappers.SourceMapper
+import ao.newsapi.romavicdosanjos.utils.authentication.BiometricManagerImpl
+import ao.newsapi.romavicdosanjos.utils.authentication.IBiometricManager
+import ao.newsapi.romavicdosanjos.domain.mappers.ArticleMapper
+import ao.newsapi.romavicdosanjos.domain.mappers.NewsTopHeadlinesMapper
+import ao.newsapi.romavicdosanjos.domain.mappers.SourceMapper
 import ao.newsapi.romavicdosanjos.data.remotedatasource.NewsTopHeadlinesRemoteDataSource
 import ao.newsapi.romavicdosanjos.data.repository.NewsTopHeadlinesRepositoryImpl
 import ao.newsapi.romavicdosanjos.domain.repository.NewsTopHeadlinesRepository
@@ -11,6 +14,7 @@ import ao.newsapi.romavicdosanjos.domain.usecase.NewsTopHeadlinesUseCase
 import ao.newsapi.romavicdosanjos.presentation.screens.newstopheadlines.NewsTopHeadlinesViewModel
 import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
+import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -66,14 +70,27 @@ val appModule = module {
     }
 
     factory {
-        NewsTopHeadlinesUseCase(newsTopHeadlinesRepository = get())
+        NewsTopHeadlinesUseCase(
+            newsTopHeadlinesRepository = get()
+        )
     }
 
     factory {
         Dispatchers.IO
     }
 
+    single {
+        AppCompatActivity()
+    }
+
+    single<IBiometricManager> { (activity: AppCompatActivity) ->
+        BiometricManagerImpl(activity = activity)
+    }
+
     viewModel {
-        NewsTopHeadlinesViewModel(newsTopHeadlinesUseCase = get(), IO = get())
+        NewsTopHeadlinesViewModel(
+            newsTopHeadlinesUseCase = get(),
+            IO = get()
+        )
     }
 }

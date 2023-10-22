@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import ao.newsapi.romavicdosanjos.data.utilities.ResultData
-import ao.newsapi.romavicdosanjos.domain.model.ArticleModel
+import ao.newsapi.romavicdosanjos.domain.entity.ArticleEntity
 import ao.newsapi.romavicdosanjos.domain.usecase.NewsTopHeadlinesUseCase
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -19,8 +19,8 @@ class NewsTopHeadlinesViewModel(
     private val IO: CoroutineDispatcher = Dispatchers.IO
 ) : ViewModel() {
 
-    private val articlesMutableLiveData = MutableLiveData<ResultData<MutableList<ArticleModel>?>>()
-    val articlesLiveData: LiveData<ResultData<MutableList<ArticleModel>?>>
+    private val articlesMutableLiveData = MutableLiveData<ResultData<MutableList<ArticleEntity>?>>()
+    val articlesLiveData: LiveData<ResultData<MutableList<ArticleEntity>?>>
         get() = articlesMutableLiveData
 
     init {

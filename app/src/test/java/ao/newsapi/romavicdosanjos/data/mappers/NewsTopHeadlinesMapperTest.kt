@@ -1,5 +1,8 @@
 package ao.newsapi.romavicdosanjos.data.mappers
 
+import ao.newsapi.romavicdosanjos.domain.mappers.ArticleMapper
+import ao.newsapi.romavicdosanjos.domain.mappers.NewsTopHeadlinesMapper
+import ao.newsapi.romavicdosanjos.domain.mappers.SourceMapper
 import ao.newsapi.romavicdosanjos.stub.articleResponseStub
 import ao.newsapi.romavicdosanjos.stub.newsTopHeadlinesResponseStub
 import ao.newsapi.romavicdosanjos.stub.sourceResponseStub

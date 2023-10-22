@@ -1,16 +1,16 @@
 package ao.newsapi.romavicdosanjos.stub
 
-import ao.newsapi.romavicdosanjos.domain.model.ArticleModel
-import ao.newsapi.romavicdosanjos.domain.model.NewsTopHeadlinesModel
-import ao.newsapi.romavicdosanjos.domain.model.SourceModel
+import ao.newsapi.romavicdosanjos.domain.entity.ArticleEntity
+import ao.newsapi.romavicdosanjos.domain.entity.NewsTopHeadlinesEntity
+import ao.newsapi.romavicdosanjos.domain.entity.SourceEntity
 
-fun newsTopHeadlinesModelStub() = NewsTopHeadlinesModel(
+fun newsTopHeadlinesModelStub() = NewsTopHeadlinesEntity(
     status = "Ok",
     totalResults = 100,
     articleResponses = mutableListOf(articleModelStub())
 )
 
-fun articleModelStub() = ArticleModel(
+fun articleModelStub() = ArticleEntity(
     sourceResponse = sourceModelStub(),
     author = "Florida Today",
     title = "SpaceX launch: Live updates as Falcon Heavy...",
@@ -21,7 +21,7 @@ fun articleModelStub() = ArticleModel(
     content = "Space is important to us and thats why..."
 )
 
-fun sourceModelStub() = SourceModel(
+fun sourceModelStub() = SourceEntity(
     id = null,
     name = "WPBF"
 )

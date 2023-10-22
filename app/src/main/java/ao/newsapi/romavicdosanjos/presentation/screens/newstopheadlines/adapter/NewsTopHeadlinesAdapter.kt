@@ -6,12 +6,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ao.newsapi.romavicdosanjos.databinding.ArticleItemBinding
-import ao.newsapi.romavicdosanjos.domain.model.ArticleModel
+import ao.newsapi.romavicdosanjos.domain.entity.ArticleEntity
 import ao.newsapi.romavicdosanjos.extensions.loadImage
 
 class NewsTopHeadlinesAdapter(
     private var onTitleSetOnClick: OnTitleSetOnClick
-) : ListAdapter<ArticleModel, NewsTopHeadlinesAdapter.NewsTopHeadlinesHolder>(
+) : ListAdapter<ArticleEntity, NewsTopHeadlinesAdapter.NewsTopHeadlinesHolder>(
     NewsTopHeadlinesDiffUtil()
 ) {
 
@@ -30,7 +30,7 @@ class NewsTopHeadlinesAdapter(
     inner class NewsTopHeadlinesHolder(
         private val binding: ArticleItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(article: ArticleModel) {
+        fun bind(article: ArticleEntity) {
             with(binding) {
                 imageItemArticle.loadImage(article.urlToImage.toString())
                 with(titleItemArticle) {
@@ -43,19 +43,19 @@ class NewsTopHeadlinesAdapter(
         }
     }
 
-    private class NewsTopHeadlinesDiffUtil : DiffUtil.ItemCallback<ArticleModel>() {
+    private class NewsTopHeadlinesDiffUtil : DiffUtil.ItemCallback<ArticleEntity>() {
         override fun areItemsTheSame(
-            oldItem: ArticleModel,
-            newItem: ArticleModel
+            oldItem: ArticleEntity,
+            newItem: ArticleEntity
         ): Boolean = oldItem == newItem
 
         override fun areContentsTheSame(
-            oldItem: ArticleModel,
-            newItem: ArticleModel
+            oldItem: ArticleEntity,
+            newItem: ArticleEntity
         ): Boolean = oldItem == newItem
     }
 
     interface OnTitleSetOnClick {
-        fun listener(article: ArticleModel)
+        fun listener(article: ArticleEntity)
     }
 }

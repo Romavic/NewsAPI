@@ -6,30 +6,31 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ao.newsapi.romavicdosanjos.R
-import ao.newsapi.romavicdosanjos.data.authentication.BiometricManagerImpl
-import ao.newsapi.romavicdosanjos.data.authentication.IBiometricManager
+import ao.newsapi.romavicdosanjos.utils.authentication.IBiometricManager
 import ao.newsapi.romavicdosanjos.data.utilities.ResultData
 import ao.newsapi.romavicdosanjos.databinding.ActivityMainBinding
-import ao.newsapi.romavicdosanjos.domain.model.ArticleModel
+import ao.newsapi.romavicdosanjos.domain.entity.ArticleEntity
 import ao.newsapi.romavicdosanjos.extensions.gone
 import ao.newsapi.romavicdosanjos.extensions.visible
 import ao.newsapi.romavicdosanjos.presentation.screens.articledetails.ArticleDetailsActivity
 import ao.newsapi.romavicdosanjos.presentation.screens.newstopheadlines.adapter.NewsTopHeadlinesAdapter
 import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 
 class NewsTopHeadlinesActivity : AppCompatActivity() {
 
-    private val viewModel: NewsTopHeadlinesViewModel by inject()
     private lateinit var binding: ActivityMainBinding
     private lateinit var newsTopHeadlinesAdapter: NewsTopHeadlinesAdapter
-    private lateinit var iBiometricManager: IBiometricManager
+    private val viewModel: NewsTopHeadlinesViewModel by inject()
+    private val iBiometricManager: IBiometricManager by inject {
+        parametersOf(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
-        iBiometricManager = BiometricManagerImpl(this)
 
         iBiometricManager.initializedBiometric(
             getString(R.string.title_biometric),
@@ -45,7 +46,7 @@ class NewsTopHeadlinesActivity : AppCompatActivity() {
     private fun configureAdapter() {
         newsTopHeadlinesAdapter = NewsTopHeadlinesAdapter(
             object : NewsTopHeadlinesAdapter.OnTitleSetOnClick {
-                override fun listener(article: ArticleModel) {
+                override fun listener(article: ArticleEntity) {
                     startActivity(Intent(
                         this@NewsTopHeadlinesActivity,
                         ArticleDetailsActivity::class.java
@@ -57,7 +58,9 @@ class NewsTopHeadlinesActivity : AppCompatActivity() {
         )
         with(binding.recyclerView) {
             layoutManager = LinearLayoutManager(
-                this@NewsTopHeadlinesActivity, RecyclerView.VERTICAL, false
+                this@NewsTopHeadlinesActivity,
+                RecyclerView.VERTICAL,
+                false
             )
             adapter = newsTopHeadlinesAdapter
         }
@@ -97,8 +100,6 @@ class NewsTopHeadlinesActivity : AppCompatActivity() {
                         errorConnection.root.gone()
                     }
                 }
-
-                else -> {}
             }
         }
     }

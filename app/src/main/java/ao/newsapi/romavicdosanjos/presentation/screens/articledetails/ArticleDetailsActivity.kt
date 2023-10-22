@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import ao.newsapi.romavicdosanjos.R
 import ao.newsapi.romavicdosanjos.databinding.ArticleDetailsActivityBinding
-import ao.newsapi.romavicdosanjos.domain.model.ArticleModel
+import ao.newsapi.romavicdosanjos.domain.entity.ArticleEntity
 import ao.newsapi.romavicdosanjos.extensions.htmToString
 import ao.newsapi.romavicdosanjos.extensions.loadImage
 
@@ -23,7 +23,7 @@ class ArticleDetailsActivity : AppCompatActivity() {
             onBackPressedDispatcher.onBackPressed()
         }
 
-        val article = intent.getParcelableExtra<ArticleModel>("article")
+        val article = intent.getParcelableExtra<ArticleEntity>("article")
 
         with(binding) {
             with(imageNewsTopHeadlinesDetails) {
